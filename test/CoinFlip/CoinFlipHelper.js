@@ -3,8 +3,9 @@ const { ethers } = require("hardhat");
 
 const helper = async (victim, attacker) => {
   // add code here that will help you pass the test
-  console.log("victim", victim, "attacker", attacker);
+  for (let i = 0; i < 10; i++) {
+    await attacker.hackContract();
+  }
 };
 
-// export default helper;
 module.exports = { helper };
