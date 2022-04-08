@@ -8,6 +8,16 @@ const helper = async (victim) => {
     Unlock the vault by somehow reading the private password from 
     Vault directly
   */
+
+  // need to pass in the same password as the one in the contract
+  // read from private var in contract
+  // pass in
+  /// ethers.getStorageAt()
+  console.log("ethers", ethers);
+  const zeroStorageSlot = await ethers.getStorageAt(victim.address, 0);
+  console.log("zeroStorageSlot", zeroStorageSlot);
+  const passwordStorageSlot = await ethers.getStorageAt(victim.address, 1);
+  console.log("passwordStorageSlot", passwordStorageSlot);
 };
 
-export default helper;
+module.exports = { helper };

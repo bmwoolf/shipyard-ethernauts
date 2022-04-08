@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-import helper from "./VaultHelper";
+const { helper } = require("./VaultHelper");
 
 let victim;
 
